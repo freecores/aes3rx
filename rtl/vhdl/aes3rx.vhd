@@ -346,19 +346,7 @@ begin
          end if;
       end if;
    end process;
-   
-   -- Eight bit shift register for preamble detection and decoder functionality.
-   bbbr_shift_reg_proc: process (clk)
-   begin
-      if clk'event and clk = '1' then
-         if reset = '1' then
-            decoder_shift <= (others => '0');
-         elsif aes3_clk = '1' then
-            decoder_shift <= aes3_sync(0) & decoder_shift(7 downto 1);
-         end if;
-      end if;
-   end process;   
-   
+     
    -- Two consecutive sampled symbols, when equal, are considered as logical 0. Two consecutive sampled 
    -- symbols, when differs, are considered as logical 1. This logical value is then shifted into 
    -- data_shift_reg.
